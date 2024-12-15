@@ -46,11 +46,9 @@ class OrganizerTabBar: UITabBarController {
             profileVC.view.backgroundColor = .white // Fixed this line
             profileVC.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(systemName: "person"), tag: 2)
             
-            let ListVC = UINavigationController(rootViewController: EventListViewController())
-            PostVC.tabBarItem = UITabBarItem(title: "Post", image: UIImage(systemName: "plus.app"), tag: 1)
             
             
-            viewControllers = [eventsVC, PostVC,profileVC,ListVC]
+            viewControllers = [eventsVC, PostVC,profileVC]
         }
     }
 
