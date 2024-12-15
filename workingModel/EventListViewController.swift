@@ -7,13 +7,16 @@
 // Fetch and list events with the updated EventModel structure
 
 import FirebaseFirestore
-
 import UIKit
 
 class EventListViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UISearchBarDelegate {
 
     // MARK: - Properties
     private var eventsByCategory: [String: [EventModel]] = [:]
+    private let predefinedCategories = [
+        "Trending", "Fun and Entertainment", "Tech and Innovation",
+        "Club and Societies", "Culture", "Networking", "Sports", "Wellness", "Other"
+    ]
     private var categories: [String] = []
     private var collectionView: UICollectionView!
     private let searchBar = UISearchBar()
@@ -178,8 +181,9 @@ class EventListViewController: UIViewController, UICollectionViewDelegate, UICol
     }
 
     private func groupEventsByCategory(_ events: [EventModel]) {
+        // Group events by category and order by predefined categories
         eventsByCategory = Dictionary(grouping: events, by: { $0.category })
-        categories = Array(eventsByCategory.keys)
+        categories = predefinedCategories.filter { eventsByCategory.keys.contains($0) }
         DispatchQueue.main.async {
             self.collectionView.reloadData()
         }
@@ -219,6 +223,7 @@ class EventListViewController: UIViewController, UICollectionViewDelegate, UICol
         }
     }
 }
+
 #Preview{
     EventListViewController()
 }
