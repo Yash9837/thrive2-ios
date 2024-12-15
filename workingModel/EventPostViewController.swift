@@ -6,6 +6,7 @@
 //
 import UIKit
 import FirebaseFirestore
+import FirebaseAuth
 
 class EventPostViewController: UIViewController {
     
@@ -58,8 +59,8 @@ class EventPostViewController: UIViewController {
     // Predefined Categories
     private let categories = [
         "Trending", "Fun and Entertainment", "Tech and Innovation",
-        "Club and Societies", "Cultural"
-, "Networking", "Sports","Career Connect", "Wellness", "Other"
+        "Club and Societies", "Cultural", "Networking", "Sports",
+        "Career Connect", "Wellness", "Other"
     ]
     private var selectedCategory: String?
     
@@ -69,8 +70,6 @@ class EventPostViewController: UIViewController {
         setupUI()
         setupConstraints()
         setupKeyboardHandling()
-//        let pushEventsService = PushEventsToDatabase()
-//        pushEventsService.pushEvents()
     }
     
     // MARK: - UI Setup
@@ -171,183 +170,184 @@ class EventPostViewController: UIViewController {
         submitButton.addTarget(self, action: #selector(postEvent), for: .touchUpInside)
         contentView.addSubview(submitButton)
     }
+    
     private func setupConstraints() {
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
-        contentView.translatesAutoresizingMaskIntoConstraints = false
-        
-        let views: [UIView] = [
-            titleLabel, titleTextField,
-            categoryLabel, categoryTextField,
-            attendanceLabel, attendanceTextField,
-            organizerLabel, organizerTextField,
-            dateLabel, datePicker,
-            timeLabel, timeTextField,
-            locationLabel, locationTextField,
-            locationDetailsLabel, locationDetailsTextField,
-            descriptionLabel, descriptionTextView,
-            imageLabel, imageTextField,
-            latitudeLabel, latitudeTextField,
-            longitudeLabel, longitudeTextField,
-            submitButton
-        ]
-        
-        for view in views {
-            view.translatesAutoresizingMaskIntoConstraints = false
+            scrollView.translatesAutoresizingMaskIntoConstraints = false
+            contentView.translatesAutoresizingMaskIntoConstraints = false
+            
+            let views: [UIView] = [
+                titleLabel, titleTextField,
+                categoryLabel, categoryTextField,
+                attendanceLabel, attendanceTextField,
+                organizerLabel, organizerTextField,
+                dateLabel, datePicker,
+                timeLabel, timeTextField,
+                locationLabel, locationTextField,
+                locationDetailsLabel, locationDetailsTextField,
+                descriptionLabel, descriptionTextView,
+                imageLabel, imageTextField,
+                latitudeLabel, latitudeTextField,
+                longitudeLabel, longitudeTextField,
+                submitButton
+            ]
+            
+            for view in views {
+                view.translatesAutoresizingMaskIntoConstraints = false
+            }
+            
+            NSLayoutConstraint.activate([
+                // ScrollView Constraints
+                scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+                scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+                scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+                scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+                
+                // ContentView Constraints
+                contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+                contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+                contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+                contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+                contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
+                
+                // Title Label
+                titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20),
+                titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+                titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+                
+                // Title TextField
+                titleTextField.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 8),
+                titleTextField.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+                titleTextField.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+                titleTextField.heightAnchor.constraint(equalToConstant: 44),
+                
+                // Category Label
+                categoryLabel.topAnchor.constraint(equalTo: titleTextField.bottomAnchor, constant: 16),
+                categoryLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+                categoryLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+                
+                // Category TextField
+                categoryTextField.topAnchor.constraint(equalTo: categoryLabel.bottomAnchor, constant: 8),
+                categoryTextField.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+                categoryTextField.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+                categoryTextField.heightAnchor.constraint(equalToConstant: 44),
+                
+                // Attendance Label
+                attendanceLabel.topAnchor.constraint(equalTo: categoryTextField.bottomAnchor, constant: 16),
+                attendanceLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+                attendanceLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+                
+                // Attendance TextField
+                attendanceTextField.topAnchor.constraint(equalTo: attendanceLabel.bottomAnchor, constant: 8),
+                attendanceTextField.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+                attendanceTextField.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+                attendanceTextField.heightAnchor.constraint(equalToConstant: 44),
+                
+                // Organizer Label
+                organizerLabel.topAnchor.constraint(equalTo: attendanceTextField.bottomAnchor, constant: 16),
+                organizerLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+                organizerLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+                
+                // Organizer TextField
+                organizerTextField.topAnchor.constraint(equalTo: organizerLabel.bottomAnchor, constant: 8),
+                organizerTextField.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+                organizerTextField.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+                organizerTextField.heightAnchor.constraint(equalToConstant: 44),
+                
+                // Date Label
+                dateLabel.topAnchor.constraint(equalTo: organizerTextField.bottomAnchor, constant: 16),
+                dateLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+                dateLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+                
+                // Date Picker
+                datePicker.topAnchor.constraint(equalTo: dateLabel.bottomAnchor, constant: 8),
+                datePicker.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+                datePicker.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+                
+                // Time Label
+                timeLabel.topAnchor.constraint(equalTo: datePicker.bottomAnchor, constant: 16),
+                timeLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+                timeLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+                
+                // Time TextField
+                timeTextField.topAnchor.constraint(equalTo: timeLabel.bottomAnchor, constant: 8),
+                timeTextField.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+                timeTextField.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+                timeTextField.heightAnchor.constraint(equalToConstant: 44),
+                
+                // Location Label
+                locationLabel.topAnchor.constraint(equalTo: timeTextField.bottomAnchor, constant: 16),
+                locationLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+                locationLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+                
+                // Location TextField
+                locationTextField.topAnchor.constraint(equalTo: locationLabel.bottomAnchor, constant: 8),
+                locationTextField.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+                locationTextField.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+                locationTextField.heightAnchor.constraint(equalToConstant: 44),
+                
+                // Location Details Label
+                locationDetailsLabel.topAnchor.constraint(equalTo: locationTextField.bottomAnchor, constant: 16),
+                locationDetailsLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+                locationDetailsLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+                
+                // Location Details TextField
+                locationDetailsTextField.topAnchor.constraint(equalTo: locationDetailsLabel.bottomAnchor, constant: 8),
+                locationDetailsTextField.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+                locationDetailsTextField.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+                locationDetailsTextField.heightAnchor.constraint(equalToConstant: 44),
+                
+                // Description Label
+                descriptionLabel.topAnchor.constraint(equalTo: locationDetailsTextField.bottomAnchor, constant: 16),
+                descriptionLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+                descriptionLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+                
+                // Description TextView
+                descriptionTextView.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 8),
+                descriptionTextView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+                descriptionTextView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+                descriptionTextView.heightAnchor.constraint(equalToConstant: 120),
+                
+                // Image Label
+                imageLabel.topAnchor.constraint(equalTo: descriptionTextView.bottomAnchor, constant: 16),
+                imageLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+                imageLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+                
+                // Image TextField
+                imageTextField.topAnchor.constraint(equalTo: imageLabel.bottomAnchor, constant: 8),
+                imageTextField.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+                imageTextField.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+                imageTextField.heightAnchor.constraint(equalToConstant: 44),
+                
+                // Latitude Label
+                latitudeLabel.topAnchor.constraint(equalTo: imageTextField.bottomAnchor, constant: 16),
+                latitudeLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+                latitudeLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+                
+                // Latitude TextField
+                latitudeTextField.topAnchor.constraint(equalTo: latitudeLabel.bottomAnchor, constant: 8),
+                latitudeTextField.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+                latitudeTextField.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+                latitudeTextField.heightAnchor.constraint(equalToConstant: 44),
+                
+                // Longitude Label
+                longitudeLabel.topAnchor.constraint(equalTo: latitudeTextField.bottomAnchor, constant: 16),
+                longitudeLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+                longitudeLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+                
+                // Longitude TextField
+                longitudeTextField.topAnchor.constraint(equalTo: longitudeLabel.bottomAnchor, constant: 8),
+                longitudeTextField.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+                longitudeTextField.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+                longitudeTextField.heightAnchor.constraint(equalToConstant: 44),
+                
+                // Submit Button
+                submitButton.topAnchor.constraint(equalTo: longitudeTextField.bottomAnchor, constant: 20),
+                submitButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+                submitButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+                submitButton.heightAnchor.constraint(equalToConstant: 50),
+                submitButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -20)
+            ])
         }
-        
-        NSLayoutConstraint.activate([
-            // ScrollView Constraints
-            scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            
-            // ContentView Constraints
-            contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
-            contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
-            contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
-            contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
-            contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
-            
-            // Title Label
-            titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20),
-            titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            
-            // Title TextField
-            titleTextField.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 8),
-            titleTextField.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            titleTextField.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            titleTextField.heightAnchor.constraint(equalToConstant: 44),
-            
-            // Category Label
-            categoryLabel.topAnchor.constraint(equalTo: titleTextField.bottomAnchor, constant: 16),
-            categoryLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            categoryLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            
-            // Category TextField
-            categoryTextField.topAnchor.constraint(equalTo: categoryLabel.bottomAnchor, constant: 8),
-            categoryTextField.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            categoryTextField.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            categoryTextField.heightAnchor.constraint(equalToConstant: 44),
-            
-            // Attendance Label
-            attendanceLabel.topAnchor.constraint(equalTo: categoryTextField.bottomAnchor, constant: 16),
-            attendanceLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            attendanceLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            
-            // Attendance TextField
-            attendanceTextField.topAnchor.constraint(equalTo: attendanceLabel.bottomAnchor, constant: 8),
-            attendanceTextField.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            attendanceTextField.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            attendanceTextField.heightAnchor.constraint(equalToConstant: 44),
-            
-            // Organizer Label
-            organizerLabel.topAnchor.constraint(equalTo: attendanceTextField.bottomAnchor, constant: 16),
-            organizerLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            organizerLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            
-            // Organizer TextField
-            organizerTextField.topAnchor.constraint(equalTo: organizerLabel.bottomAnchor, constant: 8),
-            organizerTextField.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            organizerTextField.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            organizerTextField.heightAnchor.constraint(equalToConstant: 44),
-            
-            // Date Label
-            dateLabel.topAnchor.constraint(equalTo: organizerTextField.bottomAnchor, constant: 16),
-            dateLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            dateLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            
-            // Date Picker
-            datePicker.topAnchor.constraint(equalTo: dateLabel.bottomAnchor, constant: 8),
-            datePicker.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            datePicker.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            
-            // Time Label
-            timeLabel.topAnchor.constraint(equalTo: datePicker.bottomAnchor, constant: 16),
-            timeLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            timeLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            
-            // Time TextField
-            timeTextField.topAnchor.constraint(equalTo: timeLabel.bottomAnchor, constant: 8),
-            timeTextField.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            timeTextField.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            timeTextField.heightAnchor.constraint(equalToConstant: 44),
-            
-            // Location Label
-            locationLabel.topAnchor.constraint(equalTo: timeTextField.bottomAnchor, constant: 16),
-            locationLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            locationLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            
-            // Location TextField
-            locationTextField.topAnchor.constraint(equalTo: locationLabel.bottomAnchor, constant: 8),
-            locationTextField.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            locationTextField.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            locationTextField.heightAnchor.constraint(equalToConstant: 44),
-            
-            // Location Details Label
-            locationDetailsLabel.topAnchor.constraint(equalTo: locationTextField.bottomAnchor, constant: 16),
-            locationDetailsLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            locationDetailsLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            
-            // Location Details TextField
-            locationDetailsTextField.topAnchor.constraint(equalTo: locationDetailsLabel.bottomAnchor, constant: 8),
-            locationDetailsTextField.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            locationDetailsTextField.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            locationDetailsTextField.heightAnchor.constraint(equalToConstant: 44),
-            
-            // Description Label
-            descriptionLabel.topAnchor.constraint(equalTo: locationDetailsTextField.bottomAnchor, constant: 16),
-            descriptionLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            descriptionLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            
-            // Description TextView
-            descriptionTextView.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 8),
-            descriptionTextView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            descriptionTextView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            descriptionTextView.heightAnchor.constraint(equalToConstant: 120),
-            
-            // Image Label
-            imageLabel.topAnchor.constraint(equalTo: descriptionTextView.bottomAnchor, constant: 16),
-            imageLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            imageLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            
-            // Image TextField
-            imageTextField.topAnchor.constraint(equalTo: imageLabel.bottomAnchor, constant: 8),
-            imageTextField.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            imageTextField.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            imageTextField.heightAnchor.constraint(equalToConstant: 44),
-            
-            // Latitude Label
-            latitudeLabel.topAnchor.constraint(equalTo: imageTextField.bottomAnchor, constant: 16),
-            latitudeLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            latitudeLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            
-            // Latitude TextField
-            latitudeTextField.topAnchor.constraint(equalTo: latitudeLabel.bottomAnchor, constant: 8),
-            latitudeTextField.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            latitudeTextField.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            latitudeTextField.heightAnchor.constraint(equalToConstant: 44),
-            
-            // Longitude Label
-            longitudeLabel.topAnchor.constraint(equalTo: latitudeTextField.bottomAnchor, constant: 16),
-            longitudeLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            longitudeLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            
-            // Longitude TextField
-            longitudeTextField.topAnchor.constraint(equalTo: longitudeLabel.bottomAnchor, constant: 8),
-            longitudeTextField.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            longitudeTextField.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            longitudeTextField.heightAnchor.constraint(equalToConstant: 44),
-            
-            // Submit Button
-            submitButton.topAnchor.constraint(equalTo: longitudeTextField.bottomAnchor, constant: 20),
-            submitButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            submitButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            submitButton.heightAnchor.constraint(equalToConstant: 50),
-            submitButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -20)
-        ])
-    }
 
     private func setupTextField(_ textField: UITextField, placeholder: String, keyboardType: UIKeyboardType = .default) {
         textField.placeholder = placeholder
@@ -358,6 +358,7 @@ class EventPostViewController: UIViewController {
     
     // MARK: - Post Event
     @objc private func postEvent() {
+        // Validate input fields
         guard let title = titleTextField.text, !title.isEmpty,
               let selectedCategory = selectedCategory, !selectedCategory.isEmpty,
               let organizerName = organizerTextField.text, !organizerName.isEmpty,
@@ -367,6 +368,13 @@ class EventPostViewController: UIViewController {
             return
         }
         
+        // Ensure user is authenticated
+        guard let currentUser = Auth.auth().currentUser else {
+            showAlert(title: "Error", message: "You must be logged in to post an event.")
+            return
+        }
+        
+        // Generate event data
         let eventId = UUID().uuidString
         let attendanceCount = Int(attendanceTextField.text ?? "0") ?? 0
         let eventDate = DateFormatter.localizedString(from: datePicker.date, dateStyle: .medium, timeStyle: .none)
@@ -389,7 +397,8 @@ class EventPostViewController: UIViewController {
             "description": description ?? "",
             "imageName": imageName,
             "latitude": latitude ?? 0.0,
-            "longitude": longitude ?? 0.0
+            "longitude": longitude ?? 0.0,
+            "uid": currentUser.uid // Add user ID
         ]
         
         db.collection("events").document(eventId).setData(eventData) { error in

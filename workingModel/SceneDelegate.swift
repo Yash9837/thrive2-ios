@@ -29,7 +29,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 //        window?.rootViewController = onboardingPageVC
 //        window?.makeKeyAndVisible()
         let window = UIWindow(windowScene: windowScene)
-            window.rootViewController =  RegistrationsListViewController(eventId: "6") // Set SplashViewController as the initial screen
+            window.rootViewController =  SplashViewController() // Set SplashViewController as the initial screen
             window.makeKeyAndVisible()
             self.window = window
     }

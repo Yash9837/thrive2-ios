@@ -10,7 +10,6 @@
 		394C958A2D0EEFA100466D70 /* RegistrationsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 394C95892D0EEFA100466D70 /* RegistrationsListViewController.swift */; };
 		39DF783A2CE9AF5E004B8244 /* SwipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39DF78392CE9AF5E004B8244 /* SwipeViewController.swift */; };
 		39DF783C2CE9B011004B8244 /* BookmarkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39DF783B2CE9B011004B8244 /* BookmarkViewController.swift */; };
-		572D8A352D0D5D3800DAB286 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 572D8A342D0D5D3800DAB286 /* GoogleService-Info.plist */; };
 		572D8A382D0D5E4300DAB286 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 572D8A372D0D5E4300DAB286 /* FirebaseAnalytics */; };
 		572D8A3A2D0D5E4300DAB286 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = 572D8A392D0D5E4300DAB286 /* FirebaseAnalyticsWithoutAdIdSupport */; };
 		572D8A3C2D0D5E4300DAB286 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 572D8A3B2D0D5E4300DAB286 /* FirebaseAuth */; };
@@ -22,6 +21,7 @@
 		572D8A492D0D9E5B00DAB286 /* EventRegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572D8A482D0D9E5B00DAB286 /* EventRegistrationViewController.swift */; };
 		572D8A4D2D0DA2FD00DAB286 /* EventListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572D8A4C2D0DA2FD00DAB286 /* EventListViewController.swift */; };
 		572D8A512D0DFBE000DAB286 /* EventPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572D8A502D0DFBE000DAB286 /* EventPostViewController.swift */; };
+		572D8A552D0F0CE100DAB286 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 572D8A542D0F0CE100DAB286 /* GoogleService-Info.plist */; };
 		577DA1BE2CE3999000760BFA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577DA1BD2CE3999000760BFA /* AppDelegate.swift */; };
 		577DA1C02CE3999000760BFA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577DA1BF2CE3999000760BFA /* SceneDelegate.swift */; };
 		577DA1C22CE3999000760BFA /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577DA1C12CE3999000760BFA /* EventViewController.swift */; };
@@ -74,10 +74,10 @@
 		394C95892D0EEFA100466D70 /* RegistrationsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationsListViewController.swift; sourceTree = "<group>"; };
 		39DF78392CE9AF5E004B8244 /* SwipeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeViewController.swift; sourceTree = "<group>"; };
 		39DF783B2CE9B011004B8244 /* BookmarkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkViewController.swift; sourceTree = "<group>"; };
-		572D8A342D0D5D3800DAB286 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		572D8A482D0D9E5B00DAB286 /* EventRegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventRegistrationViewController.swift; sourceTree = "<group>"; };
 		572D8A4C2D0DA2FD00DAB286 /* EventListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventListViewController.swift; sourceTree = "<group>"; };
 		572D8A502D0DFBE000DAB286 /* EventPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventPostViewController.swift; sourceTree = "<group>"; };
+		572D8A542D0F0CE100DAB286 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		577DA1BA2CE3999000760BFA /* ThriveUp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ThriveUp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		577DA1BD2CE3999000760BFA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		577DA1BF2CE3999000760BFA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -180,7 +180,7 @@
 				577DA1BF2CE3999000760BFA /* SceneDelegate.swift */,
 				577DA1C12CE3999000760BFA /* EventViewController.swift */,
 				577DA1D32CE3BE2800760BFA /* EventCell.swift */,
-				572D8A342D0D5D3800DAB286 /* GoogleService-Info.plist */,
+				572D8A542D0F0CE100DAB286 /* GoogleService-Info.plist */,
 				577DA1C62CE3999100760BFA /* Assets.xcassets */,
 				577DA1C82CE3999100760BFA /* LaunchScreen.storyboard */,
 				577DA1CB2CE3999100760BFA /* Info.plist */,
@@ -305,8 +305,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				577DA1C72CE3999100760BFA /* Assets.xcassets in Resources */,
+				572D8A552D0F0CE100DAB286 /* GoogleService-Info.plist in Resources */,
 				577DA1CA2CE3999100760BFA /* Base in Resources */,
-				572D8A352D0D5D3800DAB286 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
