@@ -35,7 +35,7 @@ class GeneralTabbarController: UITabBarController {
     }
     
     private func setupTabs() {
-        let eventsVC = UINavigationController(rootViewController: EventsViewController())
+        let eventsVC = UINavigationController(rootViewController: EventViewController())
         eventsVC.tabBarItem = UITabBarItem(title: "Feed", image: UIImage(systemName: "house"), tag: 0)
         
     

@@ -6,7 +6,7 @@
 //
 import UIKit
 
-class EventsViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UISearchBarDelegate {
+class EventViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UISearchBarDelegate {
     
     private var categories: [CategoryModel] = []
     private var collectionView: UICollectionView!

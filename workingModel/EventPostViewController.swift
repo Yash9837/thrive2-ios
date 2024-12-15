@@ -56,7 +56,11 @@ class EventPostViewController: UIViewController {
     private let db = Firestore.firestore()
     
     // Predefined Categories
-    private let categories = ["Trending", "Fun and Entertainment", "Tech", "Culture", "Networking", "Sports", "Other"]
+    private let categories = [
+        "Trending", "Fun and Entertainment", "Tech and Innovation",
+        "Club and Societies", "Cultural"
+, "Networking", "Sports","Career Connect", "Wellness", "Other"
+    ]
     private var selectedCategory: String?
     
     // MARK: - Lifecycle
@@ -65,8 +69,8 @@ class EventPostViewController: UIViewController {
         setupUI()
         setupConstraints()
         setupKeyboardHandling()
-        let pushEventsService = PushEventsToDatabase()
-        pushEventsService.pushEvents()
+//        let pushEventsService = PushEventsToDatabase()
+//        pushEventsService.pushEvents()
     }
     
     // MARK: - UI Setup

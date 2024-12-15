@@ -15,7 +15,8 @@ class EventListViewController: UIViewController, UICollectionViewDelegate, UICol
     private var eventsByCategory: [String: [EventModel]] = [:]
     private let predefinedCategories = [
         "Trending", "Fun and Entertainment", "Tech and Innovation",
-        "Club and Societies", "Culture", "Networking", "Sports", "Wellness", "Other"
+        "Club and Societies", "Cultural"
+, "Networking", "Sports","Career Connect", "Wellness", "Other"
     ]
     private var categories: [String] = []
     private var collectionView: UICollectionView!

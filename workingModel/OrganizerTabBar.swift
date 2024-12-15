@@ -34,7 +34,7 @@ class OrganizerTabBar: UITabBarController {
         }
         
         private func setupTabs() {
-            let eventsVC = UINavigationController(rootViewController: OrganizerViewController())
+            let eventsVC = UINavigationController(rootViewController: EventListViewController())
             eventsVC.tabBarItem = UITabBarItem(title: "Feed", image: UIImage(systemName: "house"), tag: 0)
             
             let PostVC = UINavigationController(rootViewController: EventPostViewController())
