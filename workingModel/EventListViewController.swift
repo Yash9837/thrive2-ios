@@ -219,3 +219,6 @@ class EventListViewController: UIViewController, UICollectionViewDelegate, UICol
         }
     }
 }
+#Preview{
+    EventListViewController()
+}

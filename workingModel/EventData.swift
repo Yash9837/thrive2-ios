@@ -24,7 +24,7 @@ class PushEventsToDatabase {
                 time: "18:00 - 22:00 IST",
                 location: "Main Arena",
                 locationDetails: "Central Lawn",
-                imageName: "",
+                imageName: "AarushIn",
                 speakers: [Speaker(name: "Samay Raina", imageURL: "samayrainaimg"), Speaker(name: "Rohit Saraf", imageURL: "rohitsaraf")],
                 description: "The grand finale of Aaruush, featuring cultural and tech highlights.",
                 latitude: 13.0604,
@@ -39,7 +39,7 @@ class PushEventsToDatabase {
                 time: "19:00 - 21:00 IST",
                 location: "Auditorium A",
                 locationDetails: "Downtown Center",
-                imageName: "",
+                imageName: "SamayRaina",
                 speakers: [Speaker(name: "Samay Raina", imageURL: "samayrainaimg")],
                 description: "A hilarious evening of stand-up comedy by Samay Raina.",
                 latitude: 13.0827,
@@ -54,7 +54,7 @@ class PushEventsToDatabase {
                 time: "18:00 - 20:00 IST",
                 location: "Auditorium B",
                 locationDetails: "City Square",
-                imageName: "",
+                imageName: "AditiMittal",
                 speakers: [Speaker(name: "Aditi Mittal", imageURL: "aditimittalimg")],
                 description: "Experience the wit and humor of Aditi Mittal.",
                 latitude: 13.0780,
@@ -69,7 +69,7 @@ class PushEventsToDatabase {
                 time: "20:00 - 22:00 IST",
                 location: "Grand Theatre",
                 locationDetails: "East Avenue",
-                imageName: "",
+                imageName: "Sahilshah",
                 speakers: [Speaker(name: "Sahil Shah", imageURL: "sahilshahimg")],
                 description: "Join Sahil Shah for a night full of entertainment.",
                 latitude: 13.0750,
@@ -84,7 +84,7 @@ class PushEventsToDatabase {
                 time: "10:00 - 22:00 IST",
                 location: "City Park",
                 locationDetails: "Greenwood",
-                imageName: "",
+                imageName: "SqareOne",
                 speakers: [],
                 description: "Enjoy a full day of activities, music, and fun at Square One Fest.",
                 latitude: 13.0800,
@@ -99,7 +99,7 @@ class PushEventsToDatabase {
                 time: "09:00 - 17:00 IST",
                 location: "Tech Hall",
                 locationDetails: "Innovation Avenue",
-                imageName: "",
+                imageName: "Roboriot",
                 speakers: [],
                 description: "Robotics championship featuring teams from across the region.",
                 latitude: 13.0450,
@@ -114,7 +114,7 @@ class PushEventsToDatabase {
                 time: "10:00 - 16:00 IST",
                 location: "Creative Hub",
                 locationDetails: "Design Plaza",
-                imageName: "",
+                imageName: "FigmaSummit",
                 speakers: [],
                 description: "Explore the latest in UI/UX design with industry experts.",
                 latitude: 13.0480,
@@ -129,7 +129,7 @@ class PushEventsToDatabase {
                 time: "10:00 - 18:00 IST",
                 location: "Campus Center",
                 locationDetails: "Innovation Lane",
-                imageName: "",
+                imageName: "Ideathon",
                 speakers: [],
                 description: "A full-day idea generation competition for students and professionals.",
                 latitude: 13.0530,
@@ -144,7 +144,7 @@ class PushEventsToDatabase {
                 time: "09:00 - 21:00 IST",
                 location: "Coding Arena",
                 locationDetails: "Code Street",
-                imageName: "",
+                imageName: "DShack",
                 speakers: [],
                 description: "A high-energy coding challenge for developers of all skill levels.",
                 latitude: 13.0650,
@@ -159,7 +159,7 @@ class PushEventsToDatabase {
                                 time: "15:00 - 17:00 IST",
                                 location: "Library Hall",
                                 locationDetails: "SRMIST Campus",
-                                imageName: "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.instagram.com%2Ffiniteloop_club_nmamit%2Fp%2FC2NGiUqPFHZ%2F&psig=AOvVaw0GgyCq4de3c7oQT7uqi8MF&ust=1734291561697000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCIi1kdmBqIoDFQAAAAAdAAAAABAE",
+                                imageName: "DSA",
                                 speakers: [],
                                 description: "Meetup for Data Structures and Algorithms enthusiasts.",
                                 latitude: 13.0604,
@@ -174,7 +174,7 @@ class PushEventsToDatabase {
                                 time: "10:00 - 13:00 IST",
                                 location: "Tech Lab 2",
                                 locationDetails: "SRMIST Campus",
-                                imageName: "",
+                                imageName: "Dbug",
                                 speakers: [],
                                 description: "Learn debugging techniques for efficient coding.",
                                 latitude: 13.0604,
@@ -189,7 +189,7 @@ class PushEventsToDatabase {
                                 time: "14:00 - 16:00 IST",
                                 location: "Room 203",
                                 locationDetails: "IT Block",
-                                imageName: "",
+                                imageName: "MLSA",
                                 speakers: [],
                                 description: "Knowledge sharing session hosted by MLSA members.",
                                 latitude: 13.0604,
@@ -203,7 +203,7 @@ class PushEventsToDatabase {
                                 time: "18:00 - 21:00 IST",
                                 location: "Main Stage",
                                 locationDetails: "Central Lawn",
-                                imageName: "",
+                                imageName: "BigDeal",
                                 speakers: [],
                                 description: "Dance competition featuring amazing talent.",
                                 latitude: 13.0604,
@@ -218,7 +218,7 @@ class PushEventsToDatabase {
                                 time: "19:00 - 22:00 IST",
                                 location: "Auditorium C",
                                 locationDetails: "SRMIST Campus",
-                                imageName: "",
+                                imageName: "Musication",
                                 speakers: [],
                                 description: "An evening filled with soothing music performances.",
                                 latitude: 13.0604,
@@ -232,7 +232,7 @@ class PushEventsToDatabase {
                                 time: "10:00 - 12:00 IST",
                                 location: "Lecture Hall 1",
                                 locationDetails: "Networking Block",
-                                imageName: "",
+                                imageName: "AarushLive1",
                                 speakers: [],
                                 description: "Interactive live session with industry professionals.",
                                 latitude: 13.0604,
@@ -247,7 +247,7 @@ class PushEventsToDatabase {
                                 time: "14:00 - 17:00 IST",
                                 location: "Grand Theatre",
                                 locationDetails: "East Avenue",
-                                imageName: "",
+                                imageName: "TedX",
                                 speakers: [],
                                 description: "A platform for sharing inspiring ideas and innovation.",
                                 latitude: 13.0604,
@@ -261,7 +261,7 @@ class PushEventsToDatabase {
                                 time: "06:00 - 09:00 IST",
                                 location: "Marina Beach",
                                 locationDetails: "Chennai",
-                                imageName: "",
+                                imageName: "BeachClean",
                                 speakers: [],
                                 description: "Volunteer drive to clean up Marina Beach.",
                                 latitude: 13.0604,
@@ -275,7 +275,7 @@ class PushEventsToDatabase {
                                 time: "16:00 - 18:00 IST",
                                 location: "Sports Complex",
                                 locationDetails: "SRMIST Campus",
-                                imageName: "",
+                                imageName: "TwistedTrivia",
                                 speakers: [],
                                 description: "Fun trivia challenge focusing on sports topics.",
                                 latitude: 13.0604,
@@ -288,7 +288,7 @@ class PushEventsToDatabase {
                                 time: "10:00 - 12:00 IST",
                                 location: "Lecture Hall 2",
                                 locationDetails: "Placement Block",
-                                imageName: "",
+                                imageName: "ppt1",
                                 speakers: [],
                                 description: "Session on shaping careers and leveraging opportunities.",
                                 latitude: 13.0604,
@@ -303,32 +303,34 @@ class PushEventsToDatabase {
     }
     
     private func pushEventToFirestore(_ event: EventModel) {
-        let eventData: [String: Any] = [
-            "eventId": event.eventId,
-            "title": event.title,
-            "category": event.category,
-            "attendanceCount": event.attendanceCount,
-            "organizerName": event.organizerName,
-            "date": event.date,
-            "time": event.time,
-            "location": event.location,
-            "locationDetails": event.locationDetails,
-            "imageName": "", // Ensure imageName is empty
-            "speakers": event.speakers.map { ["name": $0.name, "imageURL": $0.imageURL] },
-            "description": event.description as Any,
-            "latitude": event.latitude as Any,
-            "longitude": event.longitude as Any
-        ]
-        
-        db.collection("events").document(event.eventId).setData(eventData) { error in
-            if let error = error {
-                print("Error adding event \(event.eventId): \(error.localizedDescription)")
-            } else {
-                print("Event \(event.eventId) added successfully!")
+            // Prepare the event data for Firestore
+            let eventData: [String: Any] = [
+                "eventId": event.eventId,
+                "title": event.title,
+                "category": event.category,
+                "attendanceCount": event.attendanceCount,
+                "organizerName": event.organizerName,
+                "date": event.date,
+                "time": event.time,
+                "location": event.location,
+                "locationDetails": event.locationDetails,
+                "imageName": event.imageName,
+                "speakers": event.speakers.map { ["name": $0.name, "imageURL": $0.imageURL] },
+                "description": event.description ?? "",
+                "latitude": event.latitude ?? 0.0,
+                "longitude": event.longitude ?? 0.0
+            ]
+            
+            // Save to Firestore
+            db.collection("events").document(event.eventId).setData(eventData) { error in
+                if let error = error {
+                    print("Error uploading event \(event.eventId): \(error.localizedDescription)")
+                } else {
+                    print("Successfully uploaded event \(event.eventId)")
+                }
             }
         }
     }
-}
 
 func populateFirestore() {
     let db = Firestore.firestore()

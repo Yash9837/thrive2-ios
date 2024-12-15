@@ -66,17 +66,31 @@ class EventCell: UICollectionViewCell {
     }
     
     func configure(with event: EventModel) {
-//        eventImageView.image = UIImage(named: event.imageName)
-        let imageName = event.imageName // Assume this is a non-optional String
-
-        if !imageName.isEmpty {
-            eventImageView.image = UIImage(named: imageName)
+        if let imageURL = URL(string: event.imageName), !event.imageName.isEmpty, event.imageName.hasPrefix("http") {
+            // Handle image from URL
+            DispatchQueue.global().async { [weak self] in
+                if let data = try? Data(contentsOf: imageURL), let image = UIImage(data: data) {
+                    DispatchQueue.main.async {
+                        self?.eventImageView.image = image
+                    }
+                } else {
+                    DispatchQueue.main.async {
+                        self?.eventImageView.image = UIImage(named: "placeholder")
+                    }
+                }
+            }
+        } else if !event.imageName.isEmpty {
+            // Handle local image by name
+            eventImageView.image = UIImage(named: event.imageName) ?? UIImage(named: "placeholder")
         } else {
-            eventImageView.image = UIImage(named: "placeholder") // Provide a default image
+            // Use placeholder if imageName is empty
+            eventImageView.image = UIImage(named: "placeholder")
         }
-
-
+        
+        // Set title and date
         titleLabel.text = event.title
         dateLabel.text = event.date
     }
 }
+
+
