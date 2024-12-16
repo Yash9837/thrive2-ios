@@ -271,10 +271,11 @@ class OrganizerProfileViewController: UIViewController, UITableViewDelegate, UIT
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let eventDetailVC = RegistrationsListViewController(eventId: "r4VqxEQe6dXPHYJVNq5Cfd6OU4B2")
-        
-        navigationController?.pushViewController(eventDetailVC, animated: true)
+        let selectedEvent = createdEvents[indexPath.row]
+        let registrationsListVC = RegistrationListViewController(eventId: selectedEvent.eventId)
+        navigationController?.pushViewController(registrationsListVC, animated: true)
     }
+
 
     // MARK: - Navigation Bar Configuration
     private func configureNavigationBar() {
@@ -329,7 +330,6 @@ class EventTableViewCell: UITableViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    
     private let locationLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 14)
@@ -337,17 +337,14 @@ class EventTableViewCell: UITableViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    
     // MARK: - Initializer
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupUI()
     }
-    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
     private func setupUI() {
         contentView.addSubview(eventImageView)
         contentView.addSubview(titleLabel)
@@ -374,7 +371,6 @@ class EventTableViewCell: UITableViewCell {
             
         ])
     }
-    
     // MARK: - Configure Cell
     func configure(with event: EventModel) {
         titleLabel.text = event.title
